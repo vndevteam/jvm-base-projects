@@ -10,5 +10,10 @@
         <module name="kotlin-web-spring-boot-3.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="kotlin-web-spring-boot-3" target="17" />
+      <module name="kotlin-web-spring-boot-3.main" target="17" />
+      <module name="kotlin-web-spring-boot-3.test" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
