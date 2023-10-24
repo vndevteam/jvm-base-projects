@@ -1,4 +1,19 @@
+# Kotlin Web Spring Boot 3
 
+Base project cho API + Web service
+
+## Môi trường
+
+- JVM 17
+- Spring boot 3
+
+## Một số cấu hình
+
+- MessageSource:
+  - `com.vndevteam.kotlinwebspringboot3.infrastructure.config.MessageConfig`
+  - Tham khảo thêm: [Custom Validation MessageSource in Spring Boot](https://www.baeldung.com/spring-custom-validation-message-source)
+
+## Kiến trúc
 Domain Driven Design:
 - Application layer:
   - User interfaces
