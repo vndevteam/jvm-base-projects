@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                %black(%d{ISO8601}) [%X{RequestFilter.UUID}] %highlight(%-5level) [%blue(%t)] %yellow(%C{2}:%L): %msg%n%throwable
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <logger name="org.springframework.web" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver"
+            level="WARN" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.hibernate" level="ERROR" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <!-- service -->
+
+    <logger name="com.vndevteam.kotlinwebspringboot3.application" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="com.vndevteam.kotlinwebspringboot3.domain" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="com.vndevteam.kotlinwebspringboot3.infrastructure" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="com.vndevteam.kotlinwebspringboot3.util" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+</configuration>
