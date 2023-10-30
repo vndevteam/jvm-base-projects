@@ -9,3 +9,15 @@ spring:
     username: root
     password: 12345678
     driver-class-name: org.postgresql.Driver
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+
+app:
+  locale:
+    default: ja # ja, vi, en,...
+    language-parameter: lang
