@@ -1,24 +1,29 @@
-package com.vndevteam.kotlinwebspringboot3.application.demo
+package com.vndevteam.kotlinwebmvcspringboot3.application.demo
 
-import com.vndevteam.kotlinwebspringboot3.domain.enums.MESSAGE
-import com.vndevteam.kotlinwebspringboot3.infrastructure.util.MsgUtils
+import com.vndevteam.kotlinwebmvcspringboot3.domain.enums.MESSAGE
+import com.vndevteam.kotlinwebmvcspringboot3.infrastructure.util.MsgUtils
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
 import org.springframework.context.i18n.LocaleContextHolder
+import org.springframework.stereotype.Controller
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @Validated
-@RestController
+@Controller
 @RequestMapping("/demo")
-class DemoRestController {
+class DemoController {
 
     @GetMapping("/locale-message")
-    fun getLocaleMessage(): Map<String, Any> {
-        return mapOf(
+    fun getLocaleMessage(): String {
+        val test = mapOf(
             "request_locale" to LocaleContextHolder.getLocale(),
             "msg" to MsgUtils.getMessage(MESSAGE.MSG_1)
         )
+
+        println(test)
+
+        return "demo/index"
     }
 
     @PostMapping("/custom-validation-message")
@@ -26,6 +31,8 @@ class DemoRestController {
         @RequestParam("name") @NotBlank(message = "{name.not.blank}") name: String,
         @Valid @RequestBody demoReq: DemoReqDto
     ): String {
-        return name
+        println(name)
+
+        return "demo/index"
     }
 }
