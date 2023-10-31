@@ -2,10 +2,11 @@
 
 Base project cho Web MVC service
 
-## Môi trường
+## Yêu cầu
 
-- JVM 17
-- Spring boot 3
+- OpenJDK 17
+
+## Tổng quan về cấu trúc dự án
 
 ## Một số cấu hình
 
