@@ -1,3 +1,12 @@
+# Kotlin Web MVC Spring Boot 3
+
+Base project cho Web MVC service
+
+## Requirement
+
+- OpenJDK 17
+
+## Project structure overview
 
 ## References
 
