@@ -1,6 +1,6 @@
-# Kotlin Web Spring Boot 3
+# Kotlin Web MVC Spring Boot 3
 
-Base project cho API Web service
+Base project cho Web MVC service
 
 ## Môi trường
 

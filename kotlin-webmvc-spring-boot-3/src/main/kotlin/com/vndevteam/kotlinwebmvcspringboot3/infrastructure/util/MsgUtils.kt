@@ -1,6 +1,6 @@
-package com.vndevteam.kotlinwebspringboot3.infrastructure.util
+package com.vndevteam.kotlinwebmvcspringboot3.infrastructure.util
 
-import com.vndevteam.kotlinwebspringboot3.domain.enums.MESSAGE
+import com.vndevteam.kotlinwebmvcspringboot3.domain.enums.MESSAGE
 import org.springframework.context.MessageSource
 import org.springframework.context.i18n.LocaleContextHolder
 
