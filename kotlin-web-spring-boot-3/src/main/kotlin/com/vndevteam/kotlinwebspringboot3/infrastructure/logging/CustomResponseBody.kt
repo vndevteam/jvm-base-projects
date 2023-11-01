@@ -1,4 +1,4 @@
-package com.vndevteam.kotlinwebspringboot3.application.logging
+package com.vndevteam.kotlinwebspringboot3.infrastructure.logging
 
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse

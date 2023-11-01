@@ -1,5 +1,6 @@
-package com.vndevteam.kotlinwebspringboot3.application.logging
+package com.vndevteam.kotlinwebspringboot3.infrastructure.config
 
+import com.vndevteam.kotlinwebspringboot3.infrastructure.logging.MDCLoggingFilter
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
@@ -10,7 +11,7 @@ import org.springframework.context.annotation.Configuration
 @ConfigurationProperties(prefix = "app.slf4jfilter")
 class Slf4jMDCFilterConfig {
     companion object {
-        const val DEFAULT_RESPONSE_TOKEN_HEADER = "x-client-id"
+        const val DEFAULT_RESPONSE_TOKEN_HEADER = "X-Client-Id"
         const val DEFAULT_MDC_UUID_TOKEN_KEY = "RequestFilter.UUID"
         const val DEFAULT_MDC_CLIENT_IP_KEY = "RequestFilter.ClientIP"
     }
