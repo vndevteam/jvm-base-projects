@@ -1,6 +1,6 @@
-name: "Build & Test project: kotlin-web-spring-boot-3"
+name: "Build & Test project: kotlin-webmvc-spring-boot-3"
 env:
-  project_dir: kotlin-web-spring-boot-3
+  project_dir: kotlin-webmvc-spring-boot-3
 
 on:
   push:
