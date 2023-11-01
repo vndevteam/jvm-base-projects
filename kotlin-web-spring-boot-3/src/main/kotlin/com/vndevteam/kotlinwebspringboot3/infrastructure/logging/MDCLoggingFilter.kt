@@ -1,5 +1,6 @@
-package com.vndevteam.kotlinwebspringboot3.application.logging
+package com.vndevteam.kotlinwebspringboot3.infrastructure.logging
 
+import com.vndevteam.kotlinwebspringboot3.infrastructure.config.Slf4jMDCFilterConfig
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -54,10 +55,6 @@ class MDCLoggingFilter : OncePerRequestFilter {
     }
 
     override fun isAsyncDispatch(request: HttpServletRequest): Boolean {
-        return false
-    }
-
-    override fun shouldNotFilterErrorDispatch(): Boolean {
         return false
     }
 

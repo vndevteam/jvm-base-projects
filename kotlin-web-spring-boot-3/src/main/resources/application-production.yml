@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /web
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: root
+    password: 12345678
+    driver-class-name: org.postgresql.Driver
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+
+app:
+  locale:
+    default: ja # ja, vi, en,...
+
+  slf4jfilter:
+    response-header: 'X-Client-Id'
+    mdc-token-key: 'RequestFilter.UUID'
+    mdc-client-ip-key: 'RequestFilter.ClientIP'
+    request-header:
+
+  logging:
+    enable-log-request: true
+    enable-log-response: false
+    enable-log-response-time: false

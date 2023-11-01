@@ -1,4 +1,4 @@
-package com.vndevteam.kotlinwebspringboot3.application.logging
+package com.vndevteam.kotlinwebspringboot3.infrastructure.logging
 
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.beans.factory.annotation.Value
@@ -21,7 +21,7 @@ class RequestLoggingFilter : CommonsRequestLoggingFilter() {
         maxPayloadLength = 10000
         isIncludeHeaders = true
         super.setBeforeMessagePrefix("REQUEST DATA: ")
-        // Hide sensitive header if need
+        // Hide sensitive header if you need
         super.setHeaderPredicate { header -> header != HEADER_NAME_API_KEY }
     }
 
