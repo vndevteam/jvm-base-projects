@@ -21,3 +21,13 @@ app:
   locale:
     default: ja # ja, vi, en,...
 
+  slf4jfilter:
+    response-header: 'x-client-id'
+    mdc-token-key: 'RequestFilter.UUID'
+    mdc-client-ip-key: 'RequestFilter.ClientIP'
+    request-header:
+
+  logging:
+    enable-log-request: true
+    enable-log-response: true
+    enable-log-response-time: true
