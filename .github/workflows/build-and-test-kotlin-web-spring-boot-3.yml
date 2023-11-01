@@ -1,17 +1,15 @@
 name: "Build & Test project: kotlin-web-spring-boot-3"
-env:
-  project_dir: kotlin-web-spring-boot-3
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - '${{ env.project_dir }}/**'
+      - 'kotlin-web-spring-boot-3/**'
       - '!**/README*.md'
   pull_request:
     branches: [ "main" ]
     paths:
-      - '${{ env.project_dir }}/**'
+      - 'kotlin-web-spring-boot-3/**'
       - '!**/README*.md'
 
 permissions:
@@ -19,6 +17,8 @@ permissions:
 
 jobs:
   build:
+    env:
+      project_dir: kotlin-web-spring-boot-3
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
