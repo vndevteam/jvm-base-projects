@@ -7,14 +7,12 @@ on:
     branches: [ "main" ]
     paths:
       - '${{ env.project_dir }}/**'
-    paths-ignore:
-      - '**/README*.md'
+      - '!**/README*.md'
   pull_request:
     branches: [ "main" ]
     paths:
       - '${{ env.project_dir }}/**'
-    paths-ignore:
-      - '**/README*.md'
+      - '!**/README*.md'
 
 permissions:
   contents: read
