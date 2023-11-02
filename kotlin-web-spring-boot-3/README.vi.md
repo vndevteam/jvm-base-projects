@@ -6,6 +6,31 @@ Base project cho API Web service
 
 - OpenJDK 17
 
+## Môi trường phát triển
+
+### Docker
+
+#### own
+
+```bash
+cd kotlin-web-spring-boot-3/
+./docker/docker-build.sh dev ../build/libs/kotlin-web-spring-boot-3-0.0.1-SNAPSHOT.jar
+# or
+# ./docker/docker-build.sh dev-debug ../build/libs/kotlin-web-spring-boot-3-0.0.1-SNAPSHOT.jar
+# or
+# ./docker/docker-build.sh dev-jlink ../build/libs/kotlin-web-spring-boot-3-0.0.1-SNAPSHOT.jar
+```
+
+#### jib
+```bash
+./gradlew jibDockerBuild --image=vndevteam/kotlin-web-spring-boot-3:jib-v1
+```
+
+#### buildpacks
+```bash
+./gradlew bootBuildImage --imageName=vndevteam/kotlin-web-spring-boot-3:buildpacks-v1
+```
+
 ## Tổng quan về cấu trúc dự án
 
 ## Một số cấu hình

@@ -1,8 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 plugins {
     id("org.springframework.boot") version "3.1.5"
     id("io.spring.dependency-management") version "1.1.3"
+    id("com.diffplug.spotless") version "6.22.0"
+    id("com.google.cloud.tools.jib") version "3.4.0"
     kotlin("jvm") version "1.9.20"
     kotlin("plugin.spring") version "1.9.20"
     kotlin("plugin.jpa") version "1.9.20"
@@ -41,6 +44,11 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test:6.1.5")
 }
 
+ext {
+    // Fix vulnerabilities (CVE-2022-41854, CVE-2022-1471) from org.springframework.boot:spring-boot-starter-actuator:3.1.5
+    set("snakeyaml.version", "2.2")
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs += "-Xjsr305=strict"
@@ -50,4 +58,20 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+spotless {
+    kotlin {
+        ktfmt("0.46").kotlinlangStyle()
+    }
+}
+
+jib {
+    from {
+        image = "eclipse-temurin:17-jre-alpine"
+    }
+}
+
+tasks.named<BootBuildImage>("bootBuildImage") {
+    imageName.set("vndevteam/${project.name}")
 }
