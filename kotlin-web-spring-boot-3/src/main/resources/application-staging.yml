@@ -30,4 +30,6 @@ app:
   logging:
     enable-log-request: true
     enable-log-response: true
-    enable-log-response-time: true
+    log-response-time:
+      enable: true
+      exclude: >
