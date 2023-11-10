@@ -5,13 +5,29 @@ import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.jboss.logging.MDC
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
+import java.sql.Timestamp
+import java.time.Duration
+import java.time.Instant
 import java.util.*
 
+
+@Component
 class MDCLoggingFilter : OncePerRequestFilter {
     companion object {
         private const val X_FORWARDED_FOR = "X-Forwarded-For"
+        val log: Logger = LoggerFactory.getLogger(MDCLoggingFilter::class.java)
     }
+
+    @Value("\${app.logging.log-response-time.enable}")
+    val enableMeasureTime: Boolean = false
+
+    @Value("\${app.logging.log-response-time.exclude}")
+    val excludeApiPath: List<String>? = emptyList()
 
     private var responseHeader: String? = null
     private var mdcTokenKey: String? = null
@@ -37,6 +53,7 @@ class MDCLoggingFilter : OncePerRequestFilter {
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
+        val start = Instant.now()
         try {
             val clientId: String = getClientId(request)
             val clientIp: String = getClientIpAddress(request)
@@ -49,6 +66,11 @@ class MDCLoggingFilter : OncePerRequestFilter {
 
             filterChain.doFilter(request, response)
         } finally {
+            if (enableMeasureTime && excludeApiPath?.any { request.requestURL.toString().contains(it) } == false) {
+                val finish = Instant.now()
+                val time: Long = Duration.between(start, finish).toMillis()
+                log.info("Request URL: ${request.requestURL} - Take Time: $time millisecond (start: ${Timestamp.from(start)}, end: ${Timestamp.from(finish)} ).")
+            }
             MDC.remove(mdcTokenKey)
             MDC.remove(mdcClientIpKey)
         }
