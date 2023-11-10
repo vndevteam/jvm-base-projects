@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-alpine AS builder
+FROM eclipse-temurin:17.0.9_9-jdk-alpine AS builder
 ARG JAR_FILE=../build/libs/*.jar
 WORKDIR /workspace/
 RUN $JAVA_HOME/bin/jlink --add-modules java.se,jdk.jdwp.agent --strip-debug --no-man-pages --no-header-files --compress=2 --output ./jre/
