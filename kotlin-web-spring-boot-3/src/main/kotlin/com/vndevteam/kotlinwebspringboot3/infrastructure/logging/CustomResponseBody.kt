@@ -15,17 +15,18 @@ import org.springframework.http.server.ServletServerHttpResponse
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
 
-
 @ControllerAdvice
 class CustomResponseBody : ResponseBodyAdvice<Any> {
     companion object {
         val log: Logger = LoggerFactory.getLogger(CustomResponseBody::class.java)
     }
 
-    @Value("\${app.logging.enable-log-response}")
-    val enableLogResponse: Boolean = false
+    @Value("\${app.logging.enable-log-response}") val enableLogResponse: Boolean = false
 
-    override fun supports(returnType: MethodParameter, converterType: Class<out HttpMessageConverter<*>>): Boolean {
+    override fun supports(
+        returnType: MethodParameter,
+        converterType: Class<out HttpMessageConverter<*>>
+    ): Boolean {
         return true
     }
 
@@ -37,7 +38,11 @@ class CustomResponseBody : ResponseBodyAdvice<Any> {
         request: ServerHttpRequest,
         response: ServerHttpResponse
     ): Any? {
-        if (enableLogResponse && request is ServletServerHttpRequest && response is ServletServerHttpResponse) {
+        if (
+            enableLogResponse &&
+                request is ServletServerHttpRequest &&
+                response is ServletServerHttpResponse
+        ) {
             loggingResponse(request.servletRequest, response.servletResponse, body)
         }
 

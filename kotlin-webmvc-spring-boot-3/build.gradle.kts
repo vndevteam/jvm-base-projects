@@ -41,6 +41,11 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test:6.1.5")
 }
 
+ext {
+    // Fix vulnerabilities (CVE-2022-41854, CVE-2022-1471) from org.springframework.boot:spring-boot-starter-actuator:3.1.5
+    set("snakeyaml.version", "2.2")
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs += "-Xjsr305=strict"

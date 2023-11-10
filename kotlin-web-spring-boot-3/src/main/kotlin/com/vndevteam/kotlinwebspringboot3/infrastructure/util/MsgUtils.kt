@@ -18,5 +18,4 @@ object MsgUtils {
     fun getMessage(code: MESSAGE, vararg args: Any): String {
         return messageSource.getMessage(code.code, args, LocaleContextHolder.getLocale())
     }
-
 }

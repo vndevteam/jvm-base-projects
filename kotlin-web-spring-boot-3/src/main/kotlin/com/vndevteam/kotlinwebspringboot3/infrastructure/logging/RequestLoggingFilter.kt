@@ -11,8 +11,7 @@ class RequestLoggingFilter : CommonsRequestLoggingFilter() {
         private const val HEADER_NAME_API_KEY = "api-key"
     }
 
-    @Value("\${app.logging.enable-log-request}")
-    val enableLogRequest: Boolean = false
+    @Value("\${app.logging.enable-log-request}") val enableLogRequest: Boolean = false
 
     init {
         isIncludeClientInfo = true
@@ -31,7 +30,5 @@ class RequestLoggingFilter : CommonsRequestLoggingFilter() {
         }
     }
 
-    override fun afterRequest(request: HttpServletRequest, message: String) {
-
-    }
+    override fun afterRequest(request: HttpServletRequest, message: String) {}
 }
