@@ -27,6 +27,9 @@ class MDCLoggingFilter : OncePerRequestFilter {
     @Value("\${app.logging.log-response-time.exclude}")
     val excludeApiPath: List<String>? = emptyList()
 
+    @Value("\${app.logging.log-response-time.include}")
+    val includeApiPath: List<String>? = emptyList()
+
     private var responseHeader: String? = null
     private var mdcTokenKey: String? = null
     private var mdcClientIpKey: String? = null
@@ -71,7 +74,11 @@ class MDCLoggingFilter : OncePerRequestFilter {
         } finally {
             if (
                 enableMeasureTime &&
-                    excludeApiPath?.any { request.requestURL.toString().contains(it) } == false
+                    isLoggingRequest(
+                        includeApiPath!!,
+                        excludeApiPath!!,
+                        request.requestURL.toString()
+                    )
             ) {
                 val finish = Instant.now()
                 val time: Long = Duration.between(start, finish).toMillis()
@@ -106,5 +113,26 @@ class MDCLoggingFilter : OncePerRequestFilter {
                 UUID.randomUUID().toString()
             }
         return clientId
+    }
+
+    private fun isLoggingRequest(
+        includeApiPath: List<String>,
+        excludeApiPath: List<String>,
+        requestUrl: String
+    ): Boolean {
+        return when {
+            includeApiPath.isEmpty() && excludeApiPath.isEmpty() -> {
+                true
+            }
+            includeApiPath.isNotEmpty() && excludeApiPath.isEmpty() -> {
+                includeApiPath.any { requestUrl.contains(it) }
+            }
+            includeApiPath.isEmpty() && excludeApiPath.isNotEmpty() -> {
+                !excludeApiPath.any { requestUrl.contains(it) }
+            }
+            else -> {
+                includeApiPath.any { requestUrl.contains(it) }
+            }
+        }
     }
 }
