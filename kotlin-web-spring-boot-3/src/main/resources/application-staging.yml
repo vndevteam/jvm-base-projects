@@ -33,3 +33,4 @@ app:
     log-response-time:
       enable: true
       exclude: >
+      include: >
