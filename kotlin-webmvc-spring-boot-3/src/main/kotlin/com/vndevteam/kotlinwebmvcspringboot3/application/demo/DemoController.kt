@@ -16,10 +16,11 @@ class DemoController {
 
     @GetMapping("/locale-message")
     fun getLocaleMessage(): String {
-        val test = mapOf(
-            "request_locale" to LocaleContextHolder.getLocale(),
-            "msg" to MsgUtils.getMessage(MESSAGE.MSG_1)
-        )
+        val test =
+            mapOf(
+                "request_locale" to LocaleContextHolder.getLocale(),
+                "msg" to MsgUtils.getMessage(MESSAGE.MSG_1)
+            )
 
         println(test)
 

@@ -23,9 +23,8 @@ class MessageConfig {
     }
 
     /**
-     * Register MessageSource bean with the LocalValidatorFactoryBean
-     * to use custom validation message (get from messages.properties)
-     * Ex: @NotEmpty(message = "{name.not.empty}")
+     * Register MessageSource bean with the LocalValidatorFactoryBean to use custom validation
+     * message (get from messages.properties) Ex: @NotEmpty(message = "{name.not.empty}")
      */
     @Bean
     fun validator(): LocalValidatorFactoryBean {
