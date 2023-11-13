@@ -38,6 +38,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE")
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
     developmentOnly("org.springframework.boot:spring-boot-devtools:3.1.5")
     runtimeOnly("org.postgresql:postgresql:42.6.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.5")
