@@ -36,3 +36,4 @@ app:
         /example-path-1,
         /example-path-2
       include: >
+    debug: true
