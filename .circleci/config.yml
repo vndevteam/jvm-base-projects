@@ -2,8 +2,20 @@ version: 2.1
 orbs:
   gradle: circleci/gradle@3.0.0
 
+executors:
+  custom-executor:
+    docker:
+      - image: cimg/openjdk:<<parameters.tag>>
+    parameters:
+      tag:
+        type: string
+        default: "17.0"
+
 workflows:
   checkout-build-test:
     jobs:
       - gradle/test:
           app_src_directory: kotlin-web-spring-boot-3/
+          executor:
+            name: "custom-executor"
+            tag: "17.0.9"
