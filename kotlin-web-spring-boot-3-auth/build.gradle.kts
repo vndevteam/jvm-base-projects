@@ -22,16 +22,17 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.springframework.boot:spring-boot-starter-actuator:3.1.5")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.1.5")
+    implementation("org.springframework.boot:spring-boot-starter-security:3.1.5")
+    implementation("org.springframework.boot:spring-boot-starter-web:3.1.5")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("org.postgresql:postgresql")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.security:spring-security-test")
+    developmentOnly("org.springframework.boot:spring-boot-devtools:3.1.5")
+    runtimeOnly("org.postgresql:postgresql:42.6.0")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.5")
+    testImplementation("org.springframework.security:spring-security-test:6.1.5")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
 }
 
 tasks.withType<KotlinCompile> {
