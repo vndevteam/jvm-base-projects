@@ -16,6 +16,8 @@ workflows:
     jobs:
       - gradle/test:
           app_src_directory: kotlin-web-spring-boot-3/
+          reports_path: build/reports/
+          test_results_path: build/test-results/
           executor:
             name: "custom-executor"
             tag: "17.0.9"
