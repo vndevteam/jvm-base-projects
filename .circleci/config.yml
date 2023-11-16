@@ -1,23 +1,17 @@
 version: 2.1
-orbs:
-  gradle: circleci/gradle@3.0.0
+setup: true
 
-executors:
-  custom-executor:
-    docker:
-      - image: cimg/openjdk:<<parameters.tag>>
-    parameters:
-      tag:
-        type: string
-        default: "17.0"
+orbs:
+  path-filtering: circleci/path-filtering@1.0.0
 
 workflows:
-  checkout-build-test:
+  setup:
     jobs:
-      - gradle/test:
-          app_src_directory: kotlin-web-spring-boot-3/
-          reports_path: build/reports/
-          test_results_path: build/test-results/
-          executor:
-            name: "custom-executor"
-            tag: "17.0.9"
+      - path-filtering/filter:
+          name: check-updated-files
+          mapping: |
+            kotlin-web-spring-boot-3/.* run-kotlin-web-spring-boot-3-workflow true
+            kotlin-web-spring-boot-3-auth/.* run-kotlin-web-spring-boot-3-auth-workflow true
+            kotlin-webmvc-spring-boot-3/.* run-kotlin-webmvc-spring-boot-3-workflow true
+          base-revision: main
+          config-path: .circleci/workflows.yml

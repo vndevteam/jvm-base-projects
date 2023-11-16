@@ -1,0 +1,55 @@
+version: 2.1
+orbs:
+  gradle: circleci/gradle@3.0.0
+
+parameters:
+  run-kotlin-web-spring-boot-3-workflow:
+    type: boolean
+    default: false
+  run-kotlin-web-spring-boot-3-auth-workflow:
+    type: boolean
+    default: false
+  run-kotlin-webmvc-spring-boot-3-workflow:
+    type: boolean
+    default: false
+
+executors:
+  custom-executor:
+    docker:
+      - image: cimg/openjdk:<<parameters.tag>>
+    parameters:
+      tag:
+        type: string
+        default: "17.0"
+
+workflows:
+  kotlin-web-spring-boot-3:
+    when: << pipeline.parameters.run-kotlin-web-spring-boot-3-workflow >>
+    jobs:
+      - gradle/test:
+          app_src_directory: kotlin-web-spring-boot-3/
+          reports_path: build/reports/
+          test_results_path: build/test-results/
+          executor:
+            name: "custom-executor"
+            tag: "17.0.9"
+  kotlin-web-spring-boot-3-auth:
+    when: << pipeline.parameters.run-kotlin-web-spring-boot-3-auth-workflow >>
+    jobs:
+      - gradle/test:
+          app_src_directory: kotlin-web-spring-boot-3-auth/
+          reports_path: build/reports/
+          test_results_path: build/test-results/
+          executor:
+            name: "custom-executor"
+            tag: "17.0.9"
+  kotlin-webmvc-spring-boot-3:
+    when: << pipeline.parameters.run-kotlin-webmvc-spring-boot-3-workflow >>
+    jobs:
+      - gradle/test:
+          app_src_directory: kotlin-webmvc-spring-boot-3/
+          reports_path: build/reports/
+          test_results_path: build/test-results/
+          executor:
+            name: "custom-executor"
+            tag: "17.0.9"
