@@ -27,4 +27,4 @@
 (Screenshot or Video)
 
 # Discussion
-Note the part that you are not sure. Comment on your code is OK.
+Note the part that you are not sure about. Comment on your code is OK.
