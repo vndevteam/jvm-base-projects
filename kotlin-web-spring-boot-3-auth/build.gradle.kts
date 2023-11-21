@@ -29,7 +29,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     developmentOnly("org.springframework.boot:spring-boot-devtools:3.1.5")
-    runtimeOnly("org.postgresql:postgresql:42.6.0")
+    runtimeOnly("org.postgresql:postgresql:42.7.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.5")
     testImplementation("org.springframework.security:spring-security-test:6.2.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
