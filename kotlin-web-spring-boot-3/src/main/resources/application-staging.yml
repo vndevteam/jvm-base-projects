@@ -34,3 +34,4 @@ app:
       enable: true
       exclude: >
       include: >
+    debug: true
