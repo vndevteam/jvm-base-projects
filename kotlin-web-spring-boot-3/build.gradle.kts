@@ -7,7 +7,7 @@ plugins {
     id("com.diffplug.spotless") version "6.22.0"
     id("com.google.cloud.tools.jib") version "3.4.0"
     kotlin("jvm") version "1.9.21"
-    kotlin("plugin.spring") version "1.9.20"
+    kotlin("plugin.spring") version "1.9.21"
     kotlin("plugin.jpa") version "1.9.21"
 }
 
