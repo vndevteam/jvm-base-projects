@@ -1,4 +1,4 @@
-package com.vndevteam.kotlinwebspringboot3.infrastructure.exception.error
+package com.vndevteam.kotlinwebspringboot3.common.error
 
 import com.fasterxml.jackson.annotation.JsonInclude
 

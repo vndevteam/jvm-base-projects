@@ -6,8 +6,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
-    username: root
-    password: 12345678
+    username: postgres
+    password: postgres
     driver-class-name: org.postgresql.Driver
 
 management:
@@ -16,6 +16,11 @@ management:
       base-path: /actuator
       exposure:
         include: "*"
+
+jwt:
+  key: vndevteam-kotlin-web-spring-boot-base-jvm
+  jwt-token-expiration: 5
+  refresh-token-expiration: 30
 
 app:
   locale:

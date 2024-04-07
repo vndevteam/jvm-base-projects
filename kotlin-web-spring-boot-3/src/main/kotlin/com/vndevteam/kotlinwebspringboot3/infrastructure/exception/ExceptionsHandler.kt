@@ -1,7 +1,8 @@
 package com.vndevteam.kotlinwebspringboot3.infrastructure.exception
 
-import com.vndevteam.kotlinwebspringboot3.infrastructure.exception.error.ErrorDetail
-import com.vndevteam.kotlinwebspringboot3.infrastructure.exception.error.ErrorResponseDto
+import com.vndevteam.kotlinwebspringboot3.common.constants.ErrorConstants
+import com.vndevteam.kotlinwebspringboot3.common.error.ErrorDetail
+import com.vndevteam.kotlinwebspringboot3.common.error.ErrorResponseDto
 import com.vndevteam.kotlinwebspringboot3.util.DateTimeUtils
 import jakarta.validation.ConstraintViolationException
 import java.io.PrintWriter
@@ -194,7 +195,6 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         status: HttpStatusCode,
         request: WebRequest
     ): ResponseEntity<Any> {
-        val zxc = 123
         return ResponseEntity(
             ErrorResponseDto(
                 timestamp = DateTimeUtils.getNow(),

@@ -10,6 +10,11 @@ spring:
     password: 12345678
     driver-class-name: org.postgresql.Driver
 
+jwt:
+  key: vndevteam-kotlin-web-spring-boot-base-jvm
+  jwt-token-expiration: 5
+  refresh-token-expiration: 30
+
 management:
   endpoints:
     web:

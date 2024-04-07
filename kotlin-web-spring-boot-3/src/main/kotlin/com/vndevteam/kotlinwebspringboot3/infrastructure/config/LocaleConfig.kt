@@ -19,7 +19,7 @@ class LocaleConfig {
     fun acceptHeaderLocaleResolver(): LocaleResolver {
         val localeResolver = AcceptHeaderLocaleResolver()
         if (defaultLocale.isNotBlank()) {
-            localeResolver.setDefaultLocale(Locale(defaultLocale))
+            localeResolver.setDefaultLocale(Locale.forLanguageTag(defaultLocale))
         }
         return localeResolver
     }
