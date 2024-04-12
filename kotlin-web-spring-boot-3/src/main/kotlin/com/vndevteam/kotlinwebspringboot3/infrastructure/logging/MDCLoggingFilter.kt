@@ -69,16 +69,20 @@ class MDCLoggingFilter : OncePerRequestFilter {
         } finally {
             if (
                 enableMeasureTime &&
-                    isLoggingRequest(
+                isLoggingRequest(
                         includeApiPath!!,
                         excludeApiPath!!,
-                        request.requestURL.toString()
-                    )
+                        request.requestURL.toString(),
+                )
             ) {
                 val finish = Instant.now()
                 val time: Long = Duration.between(start, finish).toMillis()
                 log.info(
-                    "Request URL: ${request.requestURL} - Take Time: $time millisecond (start: ${Timestamp.from(start)}, end: ${Timestamp.from(finish)} )."
+                        "Request URL: ${request.requestURL} - Take Time: $time millisecond (start: ${
+                            Timestamp.from(
+                                    start,
+                            )
+                        }, end: ${Timestamp.from(finish)} ).",
                 )
             }
             MDC.remove(MDC_TOKEN_KEY)
@@ -119,12 +123,15 @@ class MDCLoggingFilter : OncePerRequestFilter {
             includeApiPath.isEmpty() && excludeApiPath.isEmpty() -> {
                 true
             }
+
             includeApiPath.isNotEmpty() && excludeApiPath.isEmpty() -> {
                 includeApiPath.any { requestUrl.contains(it) }
             }
+
             includeApiPath.isEmpty() -> {
                 !excludeApiPath.any { requestUrl.contains(it) }
             }
+
             else -> {
                 includeApiPath.any { requestUrl.contains(it) }
             }
