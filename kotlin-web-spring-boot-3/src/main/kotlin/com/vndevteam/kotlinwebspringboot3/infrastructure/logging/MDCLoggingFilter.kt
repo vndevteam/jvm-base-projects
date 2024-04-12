@@ -40,10 +40,7 @@ class MDCLoggingFilter : OncePerRequestFilter {
         this.requestHeader = null
     }
 
-    constructor(
-        responseHeader: String,
-        requestHeader: String?
-    ) {
+    constructor(responseHeader: String, requestHeader: String?) {
         this.responseHeader = responseHeader
         this.requestHeader = requestHeader
     }
@@ -69,16 +66,16 @@ class MDCLoggingFilter : OncePerRequestFilter {
         } finally {
             if (
                 enableMeasureTime &&
-                isLoggingRequest(
+                    isLoggingRequest(
                         includeApiPath!!,
                         excludeApiPath!!,
                         request.requestURL.toString(),
-                )
+                    )
             ) {
                 val finish = Instant.now()
                 val time: Long = Duration.between(start, finish).toMillis()
                 log.info(
-                        "Request URL: ${request.requestURL} - Take Time: $time millisecond (start: ${
+                    "Request URL: ${request.requestURL} - Take Time: $time millisecond (start: ${
                             Timestamp.from(
                                     start,
                             )
@@ -123,15 +120,12 @@ class MDCLoggingFilter : OncePerRequestFilter {
             includeApiPath.isEmpty() && excludeApiPath.isEmpty() -> {
                 true
             }
-
             includeApiPath.isNotEmpty() && excludeApiPath.isEmpty() -> {
                 includeApiPath.any { requestUrl.contains(it) }
             }
-
             includeApiPath.isEmpty() -> {
                 !excludeApiPath.any { requestUrl.contains(it) }
             }
-
             else -> {
                 includeApiPath.any { requestUrl.contains(it) }
             }
