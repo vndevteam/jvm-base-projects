@@ -19,7 +19,9 @@ import org.springframework.web.filter.OncePerRequestFilter
 class MDCLoggingFilter : OncePerRequestFilter {
     companion object {
         private const val X_FORWARDED_FOR = "X-Forwarded-For"
-        val log: Logger = LoggerFactory.getLogger(MDCLoggingFilter::class.java)
+        private const val MDC_TOKEN_KEY = "RequestFilter.UUID"
+        private const val MDC_CLIENT_IP_KEY = "RequestFilter.ClientIP"
+        private val log: Logger = LoggerFactory.getLogger(MDCLoggingFilter::class.java)
     }
 
     @Value("\${app.logging.log-response-time.enable}") val enableMeasureTime: Boolean = false
@@ -31,26 +33,15 @@ class MDCLoggingFilter : OncePerRequestFilter {
     val includeApiPath: List<String>? = emptyList()
 
     private var responseHeader: String? = null
-    private var mdcTokenKey: String? = null
-    private var mdcClientIpKey: String? = null
     private var requestHeader: String? = null
 
     constructor() {
         this.responseHeader = Slf4jMDCFilterConfig.DEFAULT_RESPONSE_TOKEN_HEADER
-        this.mdcTokenKey = Slf4jMDCFilterConfig.DEFAULT_MDC_UUID_TOKEN_KEY
-        this.mdcClientIpKey = Slf4jMDCFilterConfig.DEFAULT_MDC_CLIENT_IP_KEY
         this.requestHeader = null
     }
 
-    constructor(
-        responseHeader: String,
-        mdcTokenKey: String,
-        mdcClientIpKey: String,
-        requestHeader: String?
-    ) {
+    constructor(responseHeader: String, requestHeader: String?) {
         this.responseHeader = responseHeader
-        this.mdcTokenKey = mdcTokenKey
-        this.mdcClientIpKey = mdcClientIpKey
         this.requestHeader = requestHeader
     }
 
@@ -61,12 +52,13 @@ class MDCLoggingFilter : OncePerRequestFilter {
     ) {
         val start = Instant.now()
         try {
-            val clientId: String = getClientId(request)
-            val clientIp: String = getClientIpAddress(request)
-            MDC.put(mdcClientIpKey, clientIp)
-            MDC.put(mdcTokenKey, clientId)
+            if (MDC.get(MDC_CLIENT_IP_KEY) == null) {
+                MDC.put(MDC_CLIENT_IP_KEY, getClientIpAddress(request))
+            }
 
-            if (!responseHeader.isNullOrBlank()) {
+            if (MDC.get(MDC_TOKEN_KEY) == null && !responseHeader.isNullOrBlank()) {
+                val clientId = getClientId(request)
+                MDC.put(MDC_TOKEN_KEY, clientId)
                 response.addHeader(responseHeader, clientId)
             }
 
@@ -77,22 +69,26 @@ class MDCLoggingFilter : OncePerRequestFilter {
                     isLoggingRequest(
                         includeApiPath!!,
                         excludeApiPath!!,
-                        request.requestURL.toString()
+                        request.requestURL.toString(),
                     )
             ) {
                 val finish = Instant.now()
                 val time: Long = Duration.between(start, finish).toMillis()
                 log.info(
-                    "Request URL: ${request.requestURL} - Take Time: $time millisecond (start: ${Timestamp.from(start)}, end: ${Timestamp.from(finish)} )."
+                    "Request URL: ${request.requestURL} - Take Time: $time millisecond (start: ${
+                            Timestamp.from(
+                                    start,
+                            )
+                        }, end: ${Timestamp.from(finish)} ).",
                 )
             }
-            MDC.remove(mdcTokenKey)
-            MDC.remove(mdcClientIpKey)
+            MDC.remove(MDC_TOKEN_KEY)
+            MDC.remove(MDC_CLIENT_IP_KEY)
         }
     }
 
-    override fun isAsyncDispatch(request: HttpServletRequest): Boolean {
-        return false
+    override fun shouldNotFilterAsyncDispatch(): Boolean {
+        return true
     }
 
     private fun getClientIpAddress(httpHeaders: HttpServletRequest): String {
@@ -127,7 +123,7 @@ class MDCLoggingFilter : OncePerRequestFilter {
             includeApiPath.isNotEmpty() && excludeApiPath.isEmpty() -> {
                 includeApiPath.any { requestUrl.contains(it) }
             }
-            includeApiPath.isEmpty() && excludeApiPath.isNotEmpty() -> {
+            includeApiPath.isEmpty() -> {
                 !excludeApiPath.any { requestUrl.contains(it) }
             }
             else -> {

@@ -4,7 +4,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>
-                %black(%d{ISO8601}) [%X{RequestFilter.UUID}] %highlight(%-5level) [%blue(%t)] %yellow(%C{2}:%L):
+                %black(%d{ISO8601}) [%X{RequestFilter.UUID}][%X{RequestFilter.ClientIP}] %highlight(%-5level) [%blue(%t)] %yellow(%C{2}:%L):
                 %msg%n%throwable
             </pattern>
         </encoder>

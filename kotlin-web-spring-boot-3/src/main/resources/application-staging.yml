@@ -6,8 +6,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
-    username: root
-    password: 12345678
+    username: postgres
+    password: postgres
     driver-class-name: org.postgresql.Driver
 
 management:
@@ -21,11 +21,9 @@ app:
   locale:
     default: ja # ja, vi, en,...
 
-  slf4jfilter:
+  slf4j-filter:
+    request-header: 'X-Client-Id' # Can leave empty on production, set it on development and staging if you want to debug
     response-header: 'X-Client-Id'
-    mdc-token-key: 'RequestFilter.UUID'
-    mdc-client-ip-key: 'RequestFilter.ClientIP'
-    request-header:
 
   logging:
     enable-log-request: true
