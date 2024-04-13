@@ -1,4 +1,4 @@
-package com.vndevteam.kotlinwebspringboot3.infrastructure.exception
+package com.vndevteam.kotlinwebspringboot3.common.constants
 
 class ErrorConstants {
     companion object {

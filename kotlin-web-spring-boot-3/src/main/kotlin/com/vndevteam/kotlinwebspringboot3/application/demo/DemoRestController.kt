@@ -1,7 +1,7 @@
 package com.vndevteam.kotlinwebspringboot3.application.demo
 
-import com.vndevteam.kotlinwebspringboot3.domain.enums.MESSAGE
-import com.vndevteam.kotlinwebspringboot3.infrastructure.util.MsgUtils
+import com.vndevteam.kotlinwebspringboot3.common.enums.Message
+import com.vndevteam.kotlinwebspringboot3.util.MsgUtils
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
 import org.springframework.context.i18n.LocaleContextHolder
@@ -17,7 +17,7 @@ class DemoRestController {
     fun getLocaleMessage(): Map<String, Any> {
         return mapOf(
             "request_locale" to LocaleContextHolder.getLocale(),
-            "msg" to MsgUtils.getMessage(MESSAGE.MSG_1)
+            "msg" to MsgUtils.getMessage(Message.MSG_1)
         )
     }
 

@@ -5,9 +5,9 @@ import org.apache.commons.logging.Log
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentMatchers.anyString
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.never
 import org.mockito.Mockito.verify
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.never
 import org.springframework.mock.web.MockHttpServletRequest
 import org.springframework.test.util.ReflectionTestUtils
 

@@ -1,6 +1,6 @@
 package com.vndevteam.kotlinwebspringboot3.infrastructure.config
 
-import com.vndevteam.kotlinwebspringboot3.infrastructure.util.MsgUtils
+import com.vndevteam.kotlinwebspringboot3.util.MsgUtils
 import jakarta.annotation.PostConstruct
 import org.springframework.context.MessageSource
 import org.springframework.context.annotation.Bean

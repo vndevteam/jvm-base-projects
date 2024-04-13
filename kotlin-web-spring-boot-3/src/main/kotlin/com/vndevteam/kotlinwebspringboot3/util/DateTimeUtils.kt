@@ -28,5 +28,22 @@ class DateTimeUtils {
         fun dateTimeFormatter(format: String): DateTimeFormatter {
             return DateTimeFormatter.ofPattern(format, Locale.JAPAN)
         }
+
+        fun getDateNow(): Date {
+            return getDateNow(getNow())
+        }
+
+        fun getDateNow(localDateTime: LocalDateTime?): Date {
+            var time = localDateTime
+            if (time == null) {
+                time = getNow()
+            }
+
+            return convertLocalDateTimeToDate(time)
+        }
+
+        fun convertLocalDateTimeToDate(localDateTime: LocalDateTime): Date {
+            return Date.from(localDateTime.atZone(zoneId).toInstant())
+        }
     }
 }

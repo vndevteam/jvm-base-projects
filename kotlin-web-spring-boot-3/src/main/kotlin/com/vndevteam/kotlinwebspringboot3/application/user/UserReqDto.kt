@@ -1,3 +1,6 @@
 package com.vndevteam.kotlinwebspringboot3.application.user
 
-class UserReqDto {}
+data class UserReqDto(
+    val email: String,
+    val password: String,
+)
