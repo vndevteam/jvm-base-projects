@@ -12,8 +12,7 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver
 class LocaleConfig {
     @Value("\${app.locale.default}") private lateinit var defaultLocale: String
 
-    @Value("\${app.timezone.default}")
-    private lateinit var defaultTimezone: String
+    @Value("\${app.timezone.default}") private lateinit var defaultTimezone: String
 
     @PostConstruct
     fun started() {
