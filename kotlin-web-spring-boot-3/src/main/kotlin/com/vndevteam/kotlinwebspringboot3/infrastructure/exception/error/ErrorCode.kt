@@ -1,6 +1,6 @@
-package com.vndevteam.kotlinwebspringboot3.infrastructure.exception
+package com.vndevteam.kotlinwebspringboot3.infrastructure.exception.error
 
-class ErrorConstants {
+class ErrorCode {
     companion object {
         const val SYSTEM_ERROR = "100"
         const val REQUEST_METHOD_INVALID = "101"

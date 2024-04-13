@@ -13,6 +13,8 @@ class LocaleConfig {
 
     @Value("\${app.locale.language-parameter}") private lateinit var languageParameter: String
 
+    @Value("\${app.timezone.default}") private lateinit var defaultTimezone: String
+
     /** Use for stateful web application */
     @Bean("localeResolver")
     fun sessionLocaleResolver(): SessionLocaleResolver {
@@ -20,6 +22,11 @@ class LocaleConfig {
         if (defaultLocale.isNotBlank()) {
             localeResolver.setDefaultLocale(Locale.Builder().setLanguage(defaultLocale).build())
         }
+
+        if (defaultTimezone.isNotBlank()) {
+            localeResolver.defaultTimeZone = TimeZone.getTimeZone(defaultTimezone)
+        }
+
         return localeResolver
     }
 

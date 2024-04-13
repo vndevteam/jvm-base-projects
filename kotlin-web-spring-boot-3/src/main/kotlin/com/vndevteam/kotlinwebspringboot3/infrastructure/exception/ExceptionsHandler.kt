@@ -1,12 +1,12 @@
 package com.vndevteam.kotlinwebspringboot3.infrastructure.exception
 
+import com.vndevteam.kotlinwebspringboot3.infrastructure.exception.error.ErrorCode
 import com.vndevteam.kotlinwebspringboot3.infrastructure.exception.error.ErrorDetail
 import com.vndevteam.kotlinwebspringboot3.infrastructure.exception.error.ErrorResponseDto
 import com.vndevteam.kotlinwebspringboot3.util.DateTimeUtils
 import jakarta.validation.ConstraintViolationException
 import java.io.PrintWriter
 import java.io.StringWriter
-import java.util.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
@@ -48,7 +48,7 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         return ResponseEntity(
             ErrorResponseDto(
                 timestamp = DateTimeUtils.getNow(),
-                code = ErrorConstants.VALIDATION_INVALID,
+                code = ErrorCode.VALIDATION_INVALID,
                 message = ex.message,
                 trace = getServerMessage(ex),
                 errors = null
@@ -76,7 +76,7 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         return ResponseEntity(
             ErrorResponseDto(
                 timestamp = DateTimeUtils.getNow(),
-                code = ErrorConstants.REQUEST_METHOD_INVALID,
+                code = ErrorCode.REQUEST_METHOD_INVALID,
                 message = ex.message,
                 trace = getServerMessage(ex),
                 errors = null
@@ -100,12 +100,12 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         status: HttpStatusCode,
         request: WebRequest
     ): ResponseEntity<Any>? {
-        log.error(ex.message)
+        log.warn(ex.message)
 
         return ResponseEntity(
             ErrorResponseDto(
                 timestamp = DateTimeUtils.getNow(),
-                code = ErrorConstants.MEDIA_TYPE_INVALID,
+                code = ErrorCode.MEDIA_TYPE_INVALID,
                 message = ex.message,
                 trace = getServerMessage(ex),
                 errors = null
@@ -144,7 +144,7 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         return ResponseEntity(
             ErrorResponseDto(
                 timestamp = DateTimeUtils.getNow(),
-                code = ErrorConstants.VALIDATION_INVALID,
+                code = ErrorCode.VALIDATION_INVALID,
                 message = "Method argument not valid",
                 trace = getServerMessage(ex),
                 errors = errors
@@ -170,10 +170,10 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         return ResponseEntity(
             ErrorResponseDto(
                 timestamp = DateTimeUtils.getNow(),
-                code = ErrorConstants.VALIDATION_INVALID,
+                code = ErrorCode.VALIDATION_INVALID,
                 message = ex.message,
                 trace = getServerMessage(ex),
-                errors = null
+                errors = errors
             ),
             HttpStatus.BAD_REQUEST
         )
@@ -194,11 +194,10 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         status: HttpStatusCode,
         request: WebRequest
     ): ResponseEntity<Any> {
-        val zxc = 123
         return ResponseEntity(
             ErrorResponseDto(
                 timestamp = DateTimeUtils.getNow(),
-                code = ErrorConstants.VALIDATION_INVALID,
+                code = ErrorCode.VALIDATION_INVALID,
                 message = ex.message,
                 trace = getServerMessage(ex),
                 errors = null
@@ -225,7 +224,7 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         return ResponseEntity(
             ErrorResponseDto(
                 timestamp = DateTimeUtils.getNow(),
-                code = ErrorConstants.REQUEST_HEADER_INVALID,
+                code = ErrorCode.REQUEST_HEADER_INVALID,
                 message = ex.message,
                 trace = getServerMessage(ex),
                 errors = null
@@ -247,12 +246,12 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         return ResponseEntity(
             ErrorResponseDto(
                 timestamp = DateTimeUtils.getNow(),
-                code = ErrorConstants.SYSTEM_ERROR,
+                code = ErrorCode.SYSTEM_ERROR,
                 message = "System error",
                 trace = getServerMessage(ex),
                 errors = null
             ),
-            HttpStatus.BAD_REQUEST
+            HttpStatus.INTERNAL_SERVER_ERROR
         )
     }
 
