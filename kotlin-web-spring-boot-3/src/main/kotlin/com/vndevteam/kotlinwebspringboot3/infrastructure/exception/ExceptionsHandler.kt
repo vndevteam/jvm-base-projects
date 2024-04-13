@@ -100,7 +100,7 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         status: HttpStatusCode,
         request: WebRequest
     ): ResponseEntity<Any>? {
-        log.error(ex.message)
+        log.warn(ex.message)
 
         return ResponseEntity(
             ErrorResponseDto(
@@ -173,7 +173,7 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
                 code = ErrorConstants.VALIDATION_INVALID,
                 message = ex.message,
                 trace = getServerMessage(ex),
-                errors = null
+                errors = errors
             ),
             HttpStatus.BAD_REQUEST
         )
@@ -194,7 +194,6 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
         status: HttpStatusCode,
         request: WebRequest
     ): ResponseEntity<Any> {
-        val zxc = 123
         return ResponseEntity(
             ErrorResponseDto(
                 timestamp = DateTimeUtils.getNow(),
@@ -252,7 +251,7 @@ class ExceptionsHandler : ResponseEntityExceptionHandler() {
                 trace = getServerMessage(ex),
                 errors = null
             ),
-            HttpStatus.BAD_REQUEST
+            HttpStatus.INTERNAL_SERVER_ERROR
         )
     }
 

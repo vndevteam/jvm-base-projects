@@ -20,4 +20,5 @@ management:
 app:
   locale:
     default: ja # ja, vi, en,...
-    language-parameter: lang
+  timezone:
+    default: Asia/Tokyo # Asia/Tokyo, Asia/Ho_Chi_Minh,...

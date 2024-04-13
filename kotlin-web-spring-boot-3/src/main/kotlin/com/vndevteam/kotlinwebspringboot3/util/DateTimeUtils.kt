@@ -2,15 +2,14 @@ package com.vndevteam.kotlinwebspringboot3.util
 
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DateTimeUtils {
     companion object {
-        val zoneId: ZoneId = ZoneId.of("Asia/Tokyo")
-
-        fun getNow(): LocalDateTime {
-            return LocalDateTime.now(zoneId)
+        fun getNow(): ZonedDateTime {
+            return ZonedDateTime.now(TimeZone.getDefault().toZoneId())
         }
 
         fun getSystemNow(format: String): String {

@@ -1,1 +1,5 @@
-spring.application.name=java-web-spring-boot-3
+spring:
+  main:
+    banner-mode: console
+  profiles:
+    active: develop
