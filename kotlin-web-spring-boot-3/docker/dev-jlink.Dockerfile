@@ -6,7 +6,7 @@ RUN $JAVA_HOME/bin/jlink --add-modules java.se,jdk.jdwp.agent --strip-debug --no
 COPY $JAR_FILE ./app.jar
 RUN java -Djarmode=layertools -jar ./app.jar extract
 
-FROM ubuntu:jammy
+FROM ubuntu:noble
 RUN addgroup webappgroup; adduser  --ingroup webappgroup --disabled-password webapp
 USER webapp
 ENV JAVA_HOME=/opt/java/jre
