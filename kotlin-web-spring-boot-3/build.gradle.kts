@@ -8,7 +8,7 @@ plugins {
     id("com.google.cloud.tools.jib") version "3.4.2"
     kotlin("jvm") version "1.9.23"
     kotlin("plugin.spring") version "1.9.23"
-    kotlin("plugin.jpa") version "1.9.23"
+    kotlin("plugin.jpa") version "1.9.25"
 }
 
 group = "com.vndevteam"
