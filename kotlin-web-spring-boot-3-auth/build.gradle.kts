@@ -5,7 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.4"
     id("com.diffplug.spotless") version "6.25.0"
     id("com.google.cloud.tools.jib") version "3.4.2"
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.23"
     kotlin("plugin.jpa") version "1.9.23"
 }
