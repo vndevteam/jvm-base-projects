@@ -35,7 +35,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:3.2.4")
     implementation("org.springframework.boot:spring-boot-starter-web:3.2.4")
     implementation("org.springframework.boot:spring-boot-starter-validation:3.2.4")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE")
     developmentOnly("org.springframework.boot:spring-boot-devtools:3.2.4")
