@@ -31,7 +31,7 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools:3.2.4")
     runtimeOnly("org.postgresql:postgresql:42.7.3")
     testImplementation("org.springframework.boot:spring-boot-starter-test:3.2.4")
-    testImplementation("org.springframework.security:spring-security-test:6.2.3")
+    testImplementation("org.springframework.security:spring-security-test:6.3.4")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
 }
 
