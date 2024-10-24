@@ -1,13 +1,13 @@
 # FROM eclipse-temurin:17-jre-alpine AS builder
 # Should move to use Ubuntu for production environment
 # Refer: https://www.dotcms.com/blog/post/moving-to-ubuntu-for-our-docker-image
-FROM eclipse-temurin:21.0.2_13-jre-alpine AS builder
+FROM eclipse-temurin:21.0.5_11-jre-alpine AS builder
 ARG JAR_FILE=../build/libs/*.jar
 WORKDIR /workspace/
 COPY $JAR_FILE ./app.jar
 RUN java -Djarmode=layertools -jar ./app.jar extract
 
-FROM eclipse-temurin:21.0.2_13-jre-alpine
+FROM eclipse-temurin:21.0.5_11-jre-alpine
 RUN addgroup webappgroup; adduser  --ingroup webappgroup --disabled-password webapp
 USER webapp
 WORKDIR /workspace/
