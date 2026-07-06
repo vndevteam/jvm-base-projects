@@ -38,7 +38,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE")
     developmentOnly("org.springframework.boot:spring-boot-devtools:3.2.4")
-    runtimeOnly("org.postgresql:postgresql:42.7.3")
+    runtimeOnly("org.postgresql:postgresql:42.7.13")
     testImplementation("org.springframework.boot:spring-boot-starter-test:3.2.4")
     testImplementation("org.springframework.security:spring-security-test:6.2.3")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
